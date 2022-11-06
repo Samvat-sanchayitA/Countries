@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Countries</string>
+    <string name="something_went_wrong">Something went wrong.</string>
+    <string name="no_data_available">No data available</string>
+    <string name="problem_occurred">A problem occurred</string>
+    <string name="list_countries">List of Countries</string>
+    <string name="no_internet_available">No Internet available</string>
 </resources>
