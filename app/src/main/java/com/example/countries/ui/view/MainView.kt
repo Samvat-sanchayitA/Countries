@@ -144,11 +144,11 @@ fun ErrorDialog(message: String) {
         )
         Text(text = message, modifier = Modifier.padding(16.dp))
     }
-    val openDialog = remember { mutableStateOf(true) }
-    if (openDialog.value) {
+    var openDialog by remember { mutableStateOf(true) }
+    if (openDialog) {
         AlertDialog(
             onDismissRequest = {
-                openDialog.value = false
+                openDialog = false
             },
             title = {
                 Text(text = stringResource(R.string.problem_occurred))
@@ -161,7 +161,7 @@ fun ErrorDialog(message: String) {
             dismissButton = {
                 TextButton(
                     onClick = {
-                        openDialog.value = false
+                        openDialog = false
                     }
                 ) {
                     Text("Dismiss")
