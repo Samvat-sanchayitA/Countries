@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CountryViewModel(application: Application) : AndroidViewModel(application)
-    {
+class CountryViewModel(application: Application) : AndroidViewModel(application) {
     private val _uiUiState = MutableStateFlow<UiState>(UiState.START)
     val uiState: StateFlow<UiState> = _uiUiState
 
@@ -24,7 +23,7 @@ class CountryViewModel(application: Application) : AndroidViewModel(application)
     val savedOffset: StateFlow<Int> = _savedOffset
 
     private val errorMsg = application.resources.getString(R.string.something_went_wrong)
-        private val noDataMsg = application.resources.getString(R.string.no_data_available)
+    private val noDataMsg = application.resources.getString(R.string.no_data_available)
 
     init {
         loadCountries()
@@ -33,7 +32,8 @@ class CountryViewModel(application: Application) : AndroidViewModel(application)
     private fun loadCountries() = viewModelScope.launch {
         _uiUiState.emit(UiState.LOADING)
         try {
-          val countryList = withContext(Dispatchers.IO) { CountryApi.retrofitService.getCountries() }
+            val countryList =
+                withContext(Dispatchers.IO) { CountryApi.retrofitService.getCountries() }
             if (countryList.isNotEmpty()) {
                 _uiUiState.emit(UiState.SUCCESS(countryList))
             } else {
@@ -44,7 +44,7 @@ class CountryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-     fun saveScrollPosition(index: Int, offset: Int) {
+    fun saveScrollPosition(index: Int, offset: Int) {
         _savedIndex.value = index
         _savedOffset.value = offset
     }
